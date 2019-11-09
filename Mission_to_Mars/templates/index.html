@@ -5,25 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Just one Hemisphere</title>
+  <title>Mission to Mars</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
-  <div class="container">
+  <div class="container-fluid">
 
     <div class="jumbotron text-center">
-      <h1>Hemispheres!</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Click for Hemisphere</a></p>
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Click for Data</a></p>
     </div>
 
-    <!-- Craigslist Listings -->
-    <div class="row" id="some stuff here">
-      <div class="col-md-12">
-        <h4 class="heading">stuffy stuff stuff</small>
-      </div>
-    </div>
+    
+  <img src="{{ mars_data.img_url }}" alt="cerebus">
+  <h3>Mars Facts:</h3>
+    <table border = 1>
+        <tr>
+            <th colspan="1">Mars</th>
+          </tr>
+      <td> {{ mars_data.facts }}</td>
 
+
+    </table>
   </div>
 </body>
 

@@ -6,8 +6,7 @@ import fact
 app = Flask(__name__)
 
 # Use flask_pymongo to set up mongo connection
-app.config["MONGO_URI"] = "mongodb://localhost:27017/marsy"
-mongo = PyMongo(app)
+mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_app")
 
 
 
@@ -16,22 +15,22 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
-    mars_data = mongo.db.marsy.find_one()
+    mars_data = mongo.db.collection.find_one()
     #add thing to put my table in here
     return render_template("index.html", mars_data=mars_data)
 
-
+ 
 @app.route("/scrape")
 def scraper():
     # marsy = mongo.db.marsy
     # marsy_data = hemiscrape.scrape()
-    # facts = fact.facts().to_dict()
-    # # marsy.update({}, marsy_data, upsert=True)
+    facts = fact.facts().to_dict() 
+    # # marsy.update({}, marsy_data , upsert=True)
     # marsy.insert({'url': marsy_data, 'facts': facts})
     # # marsy.insert({'url': mars_fact })
     img_urls = hemiscrape.scrape()
     # mars_data.insert({'url': img_urls, 'facts' : facts})
-    mongo.db.collection.update({}, mars_data, upsert=True)
+    mongo.db.collection.insert({'url': img_urls, 'facts': facts})
     
     
     return redirect("/")

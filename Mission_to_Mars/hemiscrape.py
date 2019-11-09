@@ -20,10 +20,13 @@ def scrape():
     image=soup.find_all('img')[5]['src']
     img_img = ("https://astrogeology.usgs.gov"+image)   
 
-    hemisphere_image_urls = [
+    image_urls = [
     # # {"title": "Valles Marineris Hemisphere", "img_url": tiff_path},
     {"title": "Cerberus Hemisphere", "img_url": img_img}
     # # {"title": "Schiaparelli Hemisphere", "img_url": img_pathway},
     # # {"title": "Syrtis Major Hemisphere", "img_url": image_path},
     ]
-    return img_img
+
+    browser.quit()
+
+    return image_urls
