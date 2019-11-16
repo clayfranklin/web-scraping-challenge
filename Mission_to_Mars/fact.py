@@ -1,25 +1,21 @@
 import pandas as pd
 
-def facts():
+def fact_scrape():
     url = 'https://space-facts.com/mars/'
     tables = pd.read_html(url)
 
     df2=tables[1]
-    df2 = df2.drop(columns=['Earth'])
-    df2.columns = ['Attribute', 'Mars']
-
-
-    df=tables[0]
-    df.columns = ['Attribute', 'Mars']
-    df = pd.DataFrame(df)   
+    df1 = df2.drop(columns=['Earth'])
+    df3 = df1.rename(columns={"Mars - Earth Comparison":"Description"})
     
-    df_mars = pd.concat([df, df2])
-
+    df=tables[0]
+    df.columns = ['Description', 'Mars']
+  
+    df_mars = pd.concat([df3, df])
     df_mars.reset_index([])
-    df_2=df_mars.set_index('Attribute')
-    mars_fact = df_2.drop([df_2.index[0], df_2.index[1] , df_2.index[2]])
-
-    return mars_fact
+    mars_facts = df_mars.drop([df_mars.index[0], df_mars.index[1] , df_mars.index[2]])
+    mars_facts = mars_facts.to_dict(orient = "records")
+    return mars_facts
 
 
 

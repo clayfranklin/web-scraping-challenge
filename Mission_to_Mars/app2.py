@@ -1,7 +1,11 @@
-from flask import Flask, render_template, redirect
-from flask_pymongo import PyMongo
 import hemiscrape
 import fact
+import weather
+import featured
+import news
+from flask import Flask, render_template, redirect
+from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
@@ -22,19 +26,23 @@ def index():
  
 @app.route("/scrape")
 def scraper():
-    # marsy = mongo.db.marsy
-    # marsy_data = hemiscrape.scrape()
-    facts = fact.facts().to_dict() 
-    # # marsy.update({}, marsy_data , upsert=True)
-    # marsy.insert({'url': marsy_data, 'facts': facts})
-    # # marsy.insert({'url': mars_fact })
+    feat_img = featured.img_finder()
+    feat_news = news.news_scrape()
+    mars_weather = weather.weather_scraper()
+    facts = fact.fact_scrape()
     img_urls = hemiscrape.scrape()
-    # mars_data.insert({'url': img_urls, 'facts' : facts})
-    mongo.db.collection.insert({'url': img_urls, 'facts': facts})
-    
-    
+    mongo.db.collection.remove({})
+    mongo.db.collection.insert(
+        {
+        'weather': mars_weather,
+        'url': img_urls, 
+        'facts': facts, 
+        'img': feat_img,
+        'news': feat_news
+        }
+        )
+   
     return redirect("/")
-
 
 if __name__ == "__main__":
     app.run(debug=True)

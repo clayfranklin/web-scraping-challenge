@@ -20,11 +20,32 @@ def scrape():
     image=soup.find_all('img')[5]['src']
     img_img = ("https://astrogeology.usgs.gov"+image)   
 
+    browser.visit(url)
+    browser.click_link_by_partial_text('Valles Marineris Hemisphere Enhanced')
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    lrg_img=soup.find_all('img')[5]['src']
+    tiff_path = ("https://astrogeology.usgs.gov"+lrg_img)
+
+    browser.visit(url)
+    browser.click_link_by_partial_text('Syrtis Major Hemisphere Enhanced')
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    jpg=soup.find_all('img')[5]['src']
+    image_path = ("https://astrogeology.usgs.gov"+jpg)
+    
+    browser.visit(url)
+    browser.click_link_by_partial_text('Schiaparelli Hemisphere Enhanced')
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    image=soup.find_all('img')[5]['src']
+    img_pathway = ("https://astrogeology.usgs.gov"+image)
+
     image_urls = [
-    # # {"title": "Valles Marineris Hemisphere", "img_url": tiff_path},
-    {"title": "Cerberus Hemisphere", "img_url": img_img}
-    # # {"title": "Schiaparelli Hemisphere", "img_url": img_pathway},
-    # # {"title": "Syrtis Major Hemisphere", "img_url": image_path},
+    {"title": "Valles Marineris Hemisphere", "img_url": tiff_path},
+    {"title": "Cerberus Hemisphere", "img_url": img_img},
+    {"title": "Schiaparelli Hemisphere", "img_url": img_pathway},
+    {"title": "Syrtis Major Hemisphere", "img_url": image_path}
     ]
 
     browser.quit()

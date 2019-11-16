@@ -16,19 +16,46 @@
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Click for Data</a></p>
     </div>
+    <
+      <img src="{{mars_data.img}}" alt="featured", width=250, height = 300>
+      
+      <h2>Featured Mars News</h2>
 
-    
-  <img src="{{ mars_data.img_url }}" alt="cerebus">
-  <h3>Mars Facts:</h3>
-    <table border = 1>
-        <tr>
-            <th colspan="1">Mars</th>
+      <h3> {{mars_data.news[0]}}</h3>
+      <h4>{{mars_data.news[1]}}</h4>
+
+      <h3>Mars Facts:</h3>
+      <h3></h3>
+      <!-- <table class = table table-striped>  -->
+        <table>
+        <thead><!-- {% for fact in mars_data.facts.Mars %} -->
+            <tr>{{mars_data.facts.0.description}}
+            <!-- <td>{{mars_data.facts.0.description}}</td>
+            <td>{{mars_data.facts.1}}</td>
+            <td>{{mars_data.facts.2}}</td>
+            <td>{{mars_data.facts.3}}</td>
+            <td>{{mars_data.facts.4}}</td>
+            <td>{{mars_data.facts.5}}</td>
+            <td>{{mars_data.facts.6}}</td>
+            <td>{{mars_data.facts.7}}</td>
+            <td>{{mars_data.facts.8}}</td> -->
           </tr>
-      <td> {{ mars_data.facts }}</td>
+          <!-- {% endfor %} -->
+        </thead>
+      </table>
+      
+      <h3> Current Weather: 
+        
+          <h5>{{mars_data.weather}}</h5>
 
-
-    </table>
+          
+        </h3>
+      <img src="{{mars_data.url.0.img_url}}" alt="vell", width = 200, height = 200>
+      <img src="{{mars_data.url.1.img_url}}" alt="celebrus" width = 200, height = 200>
+      <img src="{{mars_data.url.2.img_url}}" alt="syrtis" width = 200, height = 200>
+      <img src="{{mars_data.url.3.img_url}}" alt="scherlia" width = 200, height = 200>
   </div>
+
 </body>
 
 </html>
